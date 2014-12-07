@@ -1,4 +1,4 @@
-package com.example.imagemarker;
+package com.example.imagemarker.core;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +34,8 @@ public class DrawingView extends View {
 		mPaint.setAntiAlias(true);
 		mPaint.setDither(true);
 		mPaint.setStyle(Paint.Style.STROKE);
-		mPaint.setStrokeJoin(Paint.Join.ROUND);
-		mPaint.setStrokeCap(Paint.Cap.ROUND);
+		mPaint.setStrokeJoin(Paint.Join.BEVEL);
+		mPaint.setStrokeCap(Paint.Cap.SQUARE);
 		mPaint.setStrokeWidth(5);
 
 		mPath = new Path();
