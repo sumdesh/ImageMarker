@@ -1,14 +1,19 @@
 package com.example.imagemarker.activities;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
+
+import com.example.imagemarker.core.Util;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 
 public class ImagePickerActivity extends Activity {
 
@@ -20,9 +25,19 @@ public class ImagePickerActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	}
-	
-	public void createImageFile(){
-		
+
+	public File createImageFile(){
+		String root = Environment.getExternalStorageDirectory().getPath();
+		String imageDirectoryPath = root+"/Pictures/ImagePicker/";
+
+		File imageLocation = new File(imageDirectoryPath);
+		if(!imageLocation.exists()){
+			imageLocation.mkdirs();
+		}
+
+		String fileName = "IMG_" + Util.getSystemDate(null).toString();
+		File imageFile = new File(imageLocation.getPath(), fileName);
+		return imageFile;
 	}
 
 	@Override
@@ -38,6 +53,9 @@ public class ImagePickerActivity extends Activity {
 				}
 
 				try {
+					
+					
+					
 					stream = getContentResolver().openInputStream(data.getData());
 					bitmap = BitmapFactory.decodeStream(stream);
 
